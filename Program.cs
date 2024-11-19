@@ -6,7 +6,7 @@ class Program
 {
     static void Main()
     {
-        Console.WriteLine("Real Year Length (Synodic) Input:");
+        Console.WriteLine("Real Year Length (Tropical/Sidereal) Input:");
         double RyL = GetPositiveDoubleInput("RyL");
 
         Console.WriteLine("Leap Year Length Input:");
@@ -50,6 +50,7 @@ class Program
 
         Console.WriteLine($"Optimal values: a = {bestA}, b = {bestB}, c = {bestC}");
         Console.WriteLine($"Minimum difference: {bestDiff}");
+        System.Threading.Thread.Sleep(100000);
     }
 
     private static double GetPositiveDoubleInput(string paramName)
