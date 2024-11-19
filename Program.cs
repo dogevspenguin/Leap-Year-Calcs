@@ -14,6 +14,8 @@ class Program
 
         Console.WriteLine("Normal Year Length Input:");
         double NyL = GetPositiveDoubleInput("NyL");
+        Console.WriteLine("Max Rule years");
+        double max = GetPositiveDoubleInput("Max");
 
         const double RN = 1e12;  // A very large value approaching infinity
         double bestDiff = double.PositiveInfinity;
@@ -24,12 +26,12 @@ class Program
             : ((a, b, c) => CalculateExpressionReverse(a, b, c, RyL, NyL, LyL, RN));
 
         object lockObject = new object();
-        Parallel.For(1, 1000, a =>
+        Parallel.For(1, (int)(max), a =>
         {
             Console.WriteLine(a);
-            for (long b = 1; b < 1000; b++)
+            for (long b = 1; b < max; b++)
             {
-                for (long c = 1; c < 1000; c++)
+                for (long c = 1; c < max; c++)
                 {
                     double exprValue = calculateMethod(a, b, c);
                     double diff = Math.Abs(exprValue - RyL);
@@ -48,9 +50,9 @@ class Program
             }
         });
 
-        Console.WriteLine($"Optimal values: a = {bestA}, b = {bestB}, c = {bestC}");
+        Console.WriteLine($"Optimal values: a = {bestA}, b = {bestB}, c = {bestC},leap first = {Math.Abs(RyL - LyL) > Math.Abs(RyL - NyL)}");
         Console.WriteLine($"Minimum difference: {bestDiff}");
-        System.Threading.Thread.Sleep(100000);
+        System.Threading.Thread.Sleep(100000);//We dont want 0 milliseconds to view the output
     }
 
     private static double GetPositiveDoubleInput(string paramName)
