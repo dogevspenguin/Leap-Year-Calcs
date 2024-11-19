@@ -1,5 +1,6 @@
 Can calculate leap year rules up to 1000, with up to 3 rules, takes 2-3 minutes on Ryzen 9 5900x
 This works by bruteforcing the rules for the year
+Calculates leap year rules for CUSTOM PLANETS, given the tropical/sidereal year length in LOCAL PLANET days
 ### NOTE
 if the Real year length is closer to the leap year length than the normal year length, It will output reversed rules
 * **ex.1**, if real year length is 298.8834, leap year is 299, and normal is 298 <br />
